@@ -1,14 +1,14 @@
 /*
 
-NOTE: The code in its current state is a VERY rough MVP. Additionally, my attribution
-may be incomplete.
+NOTE: The code in its current state is a VERY rough MVP. Additionally, my attribution may be incomplete.
 
 Includes:
-  VA.ahk - https://autohotkey.com/board/topic/21984-vista-audio-control-functions/
+  VA.ahk by Lexikos - https://autohotkey.com/board/topic/21984-vista-audio-control-functions/
 
 Borrowed Code:
-  https://autohotkey.com/board/topic/54920-midi-inputoutput-combined-with-system-exclusive/
-  https://github.com/micahstubbs/midi4ahk
+  Generic Midi Program by genmce - https://autohotkey.com/board/topic/54920-midi-inputoutput-combined-with-system-exclusive/
+  Midi In Lib  by orbik - https://autohotkey.com/board/topic/28056-midi-input-library/page-1
+  midi4ahk by Micah Stubbs - https://github.com/micahstubbs/midi4ahk
 
 */
 
