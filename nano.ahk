@@ -1,3 +1,17 @@
+/*
+
+NOTE: The code in its current state is a VERY rough MVP. Additionally, my attribution
+may be incomplete.
+
+Includes:
+  VA.ahk - https://autohotkey.com/board/topic/21984-vista-audio-control-functions/
+
+Borrowed Code:
+  https://autohotkey.com/board/topic/54920-midi-inputoutput-combined-with-system-exclusive/
+  https://github.com/micahstubbs/midi4ahk
+
+*/
+
 ;;"#defines"
 DeviceID := 0
 CALLBACK_WINDOW := 0x10000
@@ -107,9 +121,9 @@ do_reload := False
 Loop
 {
     ; Get the peak value across all channels.
-    VA_IAudioMeterInformation_GetPeakValue(audioMeter, peakValue)    
+    VA_IAudioMeterInformation_GetPeakValue(audioMeter, peakValue)
     meter := peakValue ;MakeMeter(peakValue, MeterLength)
-    
+
     ; Get the peak values of all channels.
     ; VarSetCapacity(peakValues, channelCount*4)
     ; VA_IAudioMeterInformation_GetChannelsPeakValues(audioMeter, channelCount, &peakValues)
@@ -134,8 +148,8 @@ midi_meter(fraction) {
         lights := [43, 44, 42, 41, 45]
         size := 5
     }
-    
-    
+
+
 
     light := Round(fraction*size)
 ;        midi_send(lights[A_Index-1], 127)
@@ -293,7 +307,7 @@ midi_binding(control, value)
 
     ; REVEAL MIXER
     else if (control == 71 && value = 127) {
-        If WinExist("ahk_exe SndVol.exe")  
+        If WinExist("ahk_exe SndVol.exe")
             WinActivate, ahk_exe SndVol.exe
         Else
             Run C:\Windows\System32\SndVol.exe
@@ -319,7 +333,7 @@ SetTimer, RemoveToolTip, Off
 ToolTip
 return
 
-Esc::Reload
+^Esc::Reload
 ;Esc::GoSub, sub_exit
 
 
@@ -537,4 +551,3 @@ WriteIni()
         IniWrite, %app%,nano.ini, applications, %i%
     }
 }
-
