@@ -22,5 +22,5 @@ Tools for controlling the Windows Audio Mixer with a Korg nanoKONTROL2
 
 ### Executable Instructions
 **NOTE**: Generally, running executables from randos on the internet isn't a great idea. If you really want this as an EXE, you should probably compile it yourself using AutoHotkey.
-* Download [nano.exe](ho0ber.com/nano.exe) and execute anywhere. Use as shown in the [preview video](https://www.youtube.com/watch?v=mxscBWjlrlc).
+* Download [nano.exe](http://ho0ber.com/nano.exe) and execute anywhere. Use as shown in the [preview video](https://www.youtube.com/watch?v=mxscBWjlrlc).
 * Your configuration file, `nano.ini` will created in the directory from which you ran `nano.exe`
