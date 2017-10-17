@@ -262,8 +262,14 @@ midi_binding(control, value)
             return
         app := applications[control]
         ;Tooltip, %control% = %app%
-        SetTimer, RemoveToolTip, 1000
-        Volume := GetVolumeObject(app)
+        ;SetTimer, RemoveToolTip, 1000
+        pos := InStr(app, "#")
+        if (pos >= 0) {
+            app_array := StrSplit(app, "#")
+            Volume := GetVolumeObject(app_array[1], app_array[2])
+        } else {
+            Volume := GetVolumeObject(app)
+        }
         VA_ISimpleAudioVolume_SetMasterVolume(Volume, value/127)
     }
 
@@ -354,7 +360,7 @@ ExitApp
 return
 
 
-GetVolumeObject(Param)
+GetVolumeObject(Param, mc:=1)
 {
     static IID_IASM2 := "{77AA99A0-1BD6-484F-8BC7-2C654C9A9B6F}"
     , IID_IASC2 := "{bfb7ff88-7239-4fc9-8fa2-07c950be9c6d}"
@@ -367,8 +373,20 @@ GetVolumeObject(Param)
     ; Get PID from process name
     if Param is not Integer
     {
-        Process, Exist, %Param%
-        Param := ErrorLevel
+        if !mc
+        {
+            Process, Exist, %Param%
+            Param := ErrorLevel
+        }
+        else
+        {
+            matchcount := 0
+            for process in ComObjGet("winmgmts:").ExecQuery("Select * from Win32_Process WHERE Name = '" . Param . "'") {
+                matchcount++
+                if (matchcount == mc)
+                    Param := process.ProcessId
+            }
+        }
     }
 
     ; GetDefaultAudioEndpoint
